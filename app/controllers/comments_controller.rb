@@ -4,9 +4,10 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to prototype_path(@comment.prototype) # 今回の実装には関係ありませんが、このようにPrefixでパスを指定することが望ましいです。
     else
-      @prototype = @comment.prototype
+      @prototype = Prototype.find(params[:prototype_id])
       @comments = @prototype.comments
-      render :show, locals: { prototype: @comment.prototype } 
+      @comment = Comment.new
+      render "prototypes/show"  
     end
   end
 
