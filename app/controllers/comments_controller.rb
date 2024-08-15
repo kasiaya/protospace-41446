@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     else
       @prototype = @comment.prototype
       @comments = @prototype.comments
-      render "prototypes/form" # views/tweets/show.html.erbのファイルを参照しています。
+      render :show, locals: { prototype: @comment.prototype } 
     end
   end
 
