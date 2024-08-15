@@ -4,10 +4,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to prototype_path(@comment.prototype) # 今回の実装には関係ありませんが、このようにPrefixでパスを指定することが望ましいです。
     else
-      @prototype = Prototype.find(params[:prototype_id])
-      @comments = @prototype.comments
-      @comment = Comment.new
-      render "prototypes/show"  
+      render "prototypes/show" , status: :unprocessable_entity
     end
   end
 
