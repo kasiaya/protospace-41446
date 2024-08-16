@@ -4,9 +4,9 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to prototype_path(@comment.prototype) # 今回の実装には関係ありませんが、このようにPrefixでパスを指定することが望ましいです。
     else
-      @prototypes = @comment.prototype # 必要なインスタンス変数を設定
+      @prototype = @comment.prototype # 必要なインスタンス変数を設定
       @comments = @prototype.comments # プロトタイプに紐付いたコメントも表示させるために、これを追加します
-      render 'prototypes/show'
+      render 'prototypes/show', status: :unprocessable_entity
     end
   end
 
