@@ -11,7 +11,7 @@ class PrototypesController < ApplicationController
   def create
     @prototype = Prototype.new(prototypes_params)
     if @prototype.save
-      redirect_to @prototype
+      redirect_to action: :index
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class PrototypesController < ApplicationController
   def edit
     @prototype = Prototype.find(params[:id])
     unless user_signed_in? && @prototype.user == current_user
-      redirect_to action: :index
+      redirect_to @prototype
     end
 
   end
